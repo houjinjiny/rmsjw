@@ -55,6 +55,22 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="itdr" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="rmsjw" type="b2602c69:ProjectViewProjectNode" />
+              <item name="javawebdemo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="itdr" type="462c0819:PsiDirectoryNode" />
+              <item name="pojo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="rmsjw" type="b2602c69:ProjectViewProjectNode" />
+              <item name="javawebdemo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="itdr" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -158,15 +174,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1578300841029</updated>
-      <workItem from="1578300842718" duration="614000" />
+      <workItem from="1578300842718" duration="1297000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="614000" />
+    <option name="totallyTimeSpent" value="1297000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="500" y="92" width="770" height="622" extended-state="0" />
+    <frame x="500" y="92" width="770" height="622" extended-state="1" />
     <layout>
       <window_info anchor="right" id="Palette" order="0" />
       <window_info anchor="bottom" id="TODO" order="11" />
