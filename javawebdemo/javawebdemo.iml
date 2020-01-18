@@ -25,6 +25,21 @@
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.0.52" level="application_server_libraries" />
+    <orderEntry type="library" exported="" scope="PROVIDED" name="Tomcat 8.0.52" level="application_server_libraries" />
+    <orderEntry type="library" exported="" name="c3p0-0.9.1.2" level="project" />
+    <orderEntry type="library" exported="" name="commons-dbutils-1.7" level="project" />
+    <orderEntry type="library" exported="" name="jstl" level="project" />
+    <orderEntry type="library" exported="" name="mysql-connector-java-5.1.39-bin" level="project" />
+    <orderEntry type="library" exported="" name="standard" level="project" />
+    <orderEntry type="library" exported="" name="taglibs-standard-jstlel-1.2.5" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/lib/JLayer-1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
