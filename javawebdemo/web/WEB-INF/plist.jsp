@@ -15,98 +15,96 @@
             margin: 0;
             padding: 0;
         }
-        .first{
-            width: 100%;
-            height: 60px;
-            background-color: black;
-            line-height: 50px;
-        }
-        .first h1{
-            margin-left: 40px;
-            float: left;
-            color: white;
-        }
-        .first a{
-            display: block;
-            margin: auto auto;
-            float: right;
-            font-size: 20px;
-            margin-right: 40px;
-            color: white;
-            text-decoration: none;
-        }
-        .first #ff{
-            margin-right: 100px;
-        }
-        .two #left{
+        .bottom #left{
             width: 15%;
             height: 100%;
             float: left;
-            background-color: black;
+            background-color: #F1F3F4;
             text-align: center;
         }
-        #left ul li{
-            color: white;
-            font-size: 20px;
-            list-style: none;
-            margin-top: 50px;
-        }
         #right{
+            margin-top: -20px;
             width: 85%;
+            height: 100%;
             float: right;
-            background-color: deepskyblue;
+        }
+        #right form{
+            height: 50px;
+            width: 100%;
+            line-height: 50px;
+            text-align: center;
+            font-size: 18px;
+        }
+        #right form input{
+            height: 30px;
+        }
+        #put1{
+             width: 50px;
+         }
+        table{
+            border-collapse: collapse;
+            margin-top: 10px;
+            margin-left: 10px;
+            margin-right: 20px;
+        }
+        tr{
+            width: 100%;
+            height: 20px;
+            text-align: center;
+        }
+        td{
+            font-size: 14px;
+        }
+        td,th{
+            width: 8.2%;
+            border:1px solid black;
         }
     </style>
 </head>
 <body>
 <div class="wk">
-    <div class="first">
-        <h1>xxx后台管理系统</h1>
-        <a href="#" id="ff">退出</a>
-        <a href="#">修改密码</a>
+    <div class="top">
+        <jsp:include page="top.jsp"></jsp:include>
     </div>
-    <div class="two">
+    <div class="bottom">
         <div id="left">
-            <ul>
-                <li>首页</li>
-                <li>商品</li>
-                <li>订单</li>
-                <li>营销</li>
-            </ul>
-            <h1>欢迎${us.username}登录后台管理系统</h1>
-            <a href="/backed/product/getall">获取所有商品数据</a>
+            <jsp:include page="left.jsp"></jsp:include>
         </div>
         <div id="right">
-            <form action="/backed/product/fuzzysearch " method="post" >
+            <form action="/backed/product/fuzzysearch" method="post" >
                 <input type="text" placeholder="搜索商品" name="key">
-                <input type="submit" placeholder="搜索">
+                <input type="submit" value="搜索" id="put1">
             </form>
             <c:if test="${not empty plist.data}">
                 <table>
-                    <tr>
-                        <th>序号</th>
-                        <th>商品名称</th>
-                        <th>商品价格</th>
-                        <th>商品库存</th>
-                        <th>商品在售</th>
-                        <th>商品创建时间</th>
-                        <th>商品更新时间</th>
-                    </tr>
-
-                    <c:forEach items="${plist.data}" var="p" >
+                    <thead>
                         <tr>
-                            <td>${p.id}</td>
-                            <td>${p.pname}</td>
-                            <td>${p.price}</td>
-                            <td>${p.pnum}</td>
-                            <td class="pt">${p.type}</td>
-                            <td>${p.create_time}</td>
-                            <td>${p.update_time}</td>
-                            <td>
-                                <button onclick="toType(this)">下架</button>
-                                <button>修改</button>
-                            </td>
+                            <th>序号</th>
+                            <th>商品名称</th>
+                            <th>商品价格</th>
+                            <th>商品库存</th>
+                            <th>商品在售</th>
+                            <th>商品创建时间</th>
+                            <th>商品更新时间</th>
+                            <th>操作</th>
                         </tr>
+                    </thead>
+                    <c:forEach items="${plist.data}" var="p" >
+                        <tbody>
+                            <tr>
+                                <td>${p.id}</td>
+                                <td>${p.pname}</td>
+                                <td>${p.price}</td>
+                                <td>${p.pnum}</td>
+                                <td class="pt">${p.type}</td>
+                                <td>${p.create_time}</td>
+                                <td>${p.update_time}</td>
+                                <td>
+                                    <button onclick="toType(this)">下/上架</button>
+                                    <button>修改</button>
+                                </td>
+                            </tr>
+                        </tbody>
                     </c:forEach>
                 </table>
             </c:if>
@@ -120,18 +118,38 @@
 </body>
 <script src="../../js/jquery-3.3.1.js"></script>
 <script>
+    $(function () {
+        $("tbody tr:even").css("background-color","#D1D1D1");
+    });
     function toType(but) {
         var id2=$(but).parent().parent().children().first().text();
-        $.get(
-            "/backed/product/totype",
-            {id:id2},
-            function (data) {
-                var num=Number(data);
-                if(num>0){
-                    $(but).parent().parent().children().first().nextAll(".pt").text(1);
+        var ty=$(but).parent().parent().children().first().nextAll(".pt").text();
+        // 下架
+        if(0==ty){
+            $.get(
+                "/backed/product/totype",
+                {"id":id2},
+                function (data) {
+                    var num=Number(data);
+                    if(num>0){
+                        $(but).parent().parent().children().first().nextAll(".pt").text(1);
+                    }
                 }
-            }
-        )
+            )
+        }else{
+            //上架
+            $.get(
+                "/backed/product/uptype",
+                {"id":id2},
+                function (data) {
+                    var num=Number(data);
+                    if(num>0){
+                        $(but).parent().parent().children().first().nextAll(".pt").text(0);
+                    }
+                }
+            )
+        }
+
     }
 </script>
 </html>

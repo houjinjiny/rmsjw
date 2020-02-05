@@ -75,7 +75,7 @@
 <script src="js/jquery-3.3.1.js"></script>
 <script>
     function show(id,infor) {
-        document.getElementById(id+"span").innerHTML="<font color='red'>"+infor+"</font>";
+        document.getElementById(id+"span").innerHTML="<font color='gray'>"+infor+"</font>";
     }
     function check(id,infor) {
         var x=document.getElementById(id);

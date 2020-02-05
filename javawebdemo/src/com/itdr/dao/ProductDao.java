@@ -51,7 +51,19 @@ public class ProductDao {
         }
         return query;
     }
+    public int updateByIdup(int i) {
+        QueryRunner qr = new QueryRunner(C3P0Util.getCom());
 
+        String sql = "update product set type=0 where id=? ";
+
+        int query = 0;
+        try {
+            query = qr.update(sql,i);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return query;
+    }
     public List<Product> selectByKey(String keyWord) {
         QueryRunner qr = new QueryRunner(C3P0Util.getCom());
 
@@ -60,6 +72,35 @@ public class ProductDao {
         List<Product> query = null;
         try {
             query = qr.query(sql, new BeanListHandler<Product>(Product.class),keyWord);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return query;
+    }
+
+
+    public Product selectByPname(String pname) {
+        QueryRunner qr = new QueryRunner(C3P0Util.getCom());
+
+        String sql = "select id,pname,price,pnum,type,create_time,update_time from product where pname=?";
+
+        Product query = null;
+        try {
+            query = qr.query(sql, new BeanHandler<Product>(Product.class),  pname);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return query;
+    }
+    //添加商品
+    public int insertinto(String pname, Double prices, Integer i) {
+        QueryRunner qr = new QueryRunner(C3P0Util.getCom());
+
+        String sql = "INSERT INTO product VALUES(null,?,?,?,0,now(),now())";
+
+        int query = 0;
+        try {
+            query = qr.update(sql,pname,prices,i);
         } catch (SQLException e) {
             e.printStackTrace();
         }

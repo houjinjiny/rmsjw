@@ -8,4 +8,8 @@ public interface ProductService {
     ResponseCode toType(String id);
 
     ResponseCode fuzzySearch(String key);
+
+    ResponseCode upType(String id);
+
+    ResponseCode addProduct(String pname, String price, String pnum);
 }

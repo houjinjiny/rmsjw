@@ -20,67 +20,29 @@
             background-color: black;
             line-height: 50px;
         }
-        .first h1{
-            margin-left: 40px;
-            float: left;
-            color: white;
-        }
-        .first a{
-            display: block;
-            margin: auto auto;
-            float: right;
-            font-size: 20px;
-            margin-right: 40px;
-            color: white;
-            text-decoration: none;
-        }
-        .first #ff{
-            margin-right: 100px;
-        }
         .two #left{
             width: 15%;
             height: 100%;
             float: left;
-            background-color: black;
+            background-color: #F1F3F4;
             text-align: center;
-        }
-        #left ul li{
-            color: white;
-            font-size: 20px;
-            list-style: none;
-            margin-top: 50px;
-        }
-        #right{
-            width: 85%;
-            float: right;
-            background-color: deepskyblue;
         }
     </style>
 </head>
 <body>
 <div class="wk">
     <div class="first">
-        <h1>xxx后台管理系统</h1>
-        <a href="#" id="ff">退出</a>
-        <a href="#">修改密码</a>
+        <jsp:include page="top.jsp"></jsp:include>
     </div>
+
     <div class="two">
         <div id="left">
-            <ul>
-                <li>首页</li>
-                <li>商品</li>
-                <li>订单</li>
-                <li>营销</li>
-            </ul>
-            <h1>欢迎${us.username}登录后台管理系统</h1>
-            <a href="/backed/product/getall">获取所有商品数据</a>
+            <jsp:include page="left.jsp"></jsp:include>
         </div>
         <div id="right">
 
         </div>
     </div>
 </div>
-
-
 </body>
 </html>
