@@ -27,4 +27,10 @@ public class UserServiceImpl implements UserService {
         }
 
     }
+
+    @Override
+    public ResponseCode changemesg(String username, String passO, String passN) {
+        int i=ud.updateBypass(username,passO,passN);
+        return ResponseCode.toSuccess(i);
+    }
 }

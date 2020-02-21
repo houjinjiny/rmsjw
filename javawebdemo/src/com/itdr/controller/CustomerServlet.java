@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/backed/customer/*")
@@ -48,7 +49,7 @@ public class CustomerServlet extends HttpServlet {
     private void getAllCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ResponseCode allCustomer=customerService.getAllCustomer();
         request.setAttribute("customerlist",allCustomer);
-        request.getRequestDispatcher("/WEB-INF/customer.jsp").forward(request,response);
+        getNum(request,response);
     }
     //根据用户身份证号查询
     private void fuzzySearch(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -61,13 +62,13 @@ public class CustomerServlet extends HttpServlet {
     private void getNormal(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     ResponseCode allCustomer=customerService.getAllNormalCustomer();
     request.setAttribute("customerlist",allCustomer);
-    request.getRequestDispatcher("/WEB-INF/customer.jsp").forward(request,response);
+    getNum(request,response);
 }
     //查找会员
     private void getGold(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     ResponseCode allCustomer=customerService.getAllGoldCustomer();
     request.setAttribute("customerlist",allCustomer);
-    request.getRequestDispatcher("/WEB-INF/customer.jsp").forward(request,response);
+    getNum(request,response);
 }
     //升级
     private void upType(HttpServletRequest request, HttpServletResponse response) throws  IOException {
@@ -82,5 +83,14 @@ public class CustomerServlet extends HttpServlet {
         String num=request.getParameter("ty");
         ResponseCode i2=customerService.downType(i,num);
         response.getWriter().write(i2.getData().toString());
+    }
+    //数量
+    public void getNum(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session=request.getSession();
+        int c1=customerService.getC1();
+        int c2=customerService.getC2();
+        session.setAttribute("c1",c1);
+        session.setAttribute("c2",c2);
+        request.getRequestDispatcher("/WEB-INF/customer.jsp").forward(request,response);
     }
 }

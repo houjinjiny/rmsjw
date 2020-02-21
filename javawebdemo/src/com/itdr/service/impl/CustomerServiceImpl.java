@@ -52,4 +52,20 @@ public class CustomerServiceImpl implements CustomerService {
         int i2=customerDao.downType(a,b);
         return ResponseCode.toSuccess(i2);
     }
+
+    @Override
+    public int getC1() {
+        List<Customer> customerlist=customerDao.getAllNormalCustomer();
+        int i=customerlist.size();
+        System.out.println(i);
+        return i;
+    }
+
+    @Override
+    public int getC2() {
+        List<Customer> customerlist=customerDao.getAllGoldCustomer();
+        int i=customerlist.size();
+        System.out.println(i);
+        return i;
+    }
 }

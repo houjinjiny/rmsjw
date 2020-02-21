@@ -11,7 +11,7 @@ public class UserDao {
     public Users selectByUserNameAndPassword(String username,String password){
         QueryRunner qr = new QueryRunner(C3P0Util.getCom());
 
-        String sql = "select id,username,password,type,create_time,update_time from users where username=? and password=?";
+        String sql = "select * from users where username=? and password=?";
 
         Users u = null;
         try {
@@ -20,5 +20,18 @@ public class UserDao {
             e.printStackTrace();
         }
         return u;
+    }
+
+    public int updateBypass(String username, String passO, String passN) {
+        QueryRunner qr = new QueryRunner(C3P0Util.getCom());
+
+        String sql = "update users set password=? where username=? and password=?";
+        int update=0;
+        try {
+            update = qr.update(sql, passN, username, passO);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return update;
     }
 }

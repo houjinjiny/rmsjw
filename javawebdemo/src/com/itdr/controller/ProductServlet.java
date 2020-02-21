@@ -78,6 +78,5 @@ public class ProductServlet extends HttpServlet {
         ResponseCode allProduct = productService.getAllProduct();
         request.setAttribute("plist",allProduct);
         request.getRequestDispatcher("/WEB-INF/plist.jsp").forward(request,response);
-
     }
 }

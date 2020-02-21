@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/backed/order/*")
@@ -40,8 +41,35 @@ public class OrderServlet extends HttpServlet {
                 String key3="已发货";
                 getSearch(request,response,key3);
                 break;
+            case "gethuo":
+                getHuo(request,response);
+                break;
+            case "daifh":
+                daifah(request,response);
+                break;
+            case "daisk":
+                daisk(request,response);
+                break;
+            case "daish":
+                daish(request,response);
+                break;
+            case "daifk":
+                daifk(request,response);
+                break;
+
+
         }
     }
+
+
+
+    //发货
+    private void getHuo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ResponseCode allOrder=orderService.getHuo();
+        request.setAttribute("olist",allOrder);
+        request.getRequestDispatcher("/WEB-INF/huowu.jsp").forward(request,response);
+    }
+
     //查询订单
     private void getAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ResponseCode allOrder=orderService.getAll();
@@ -61,5 +89,51 @@ public class OrderServlet extends HttpServlet {
         request.setAttribute("olist",allOrder);
         request.getRequestDispatcher("/WEB-INF/order.jsp").forward(request,response);
     }
-
+    //数量
+    public void getNum(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session=request.getSession();
+        //待发货
+        int i1=orderService.getNum1();
+        //待收款
+        int i2=orderService.getNum2();
+        //待收货
+        int i3=orderService.getNum3();
+        //待付款
+        int i4=orderService.getNum4();
+        //全部订单
+        int i5=orderService.getNum5();
+        //已完成订单
+        int i6=orderService.getNum6();
+        session.setAttribute("i1",i1);
+        session.setAttribute("i2",i2);
+        session.setAttribute("i3",i3);
+        session.setAttribute("i4",i4);
+        session.setAttribute("i5",i5);
+        session.setAttribute("i6",i6);
+        request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request,response);
+    }
+    // 待发货
+    private void daifah(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ResponseCode allOrder=orderService.daifah();
+        request.setAttribute("olist",allOrder);
+        request.getRequestDispatcher("/WEB-INF/huowu.jsp").forward(request,response);
+    }
+    //代收款
+    private void daisk(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ResponseCode allOrder=orderService.daisk();
+        request.setAttribute("olist",allOrder);
+        request.getRequestDispatcher("/WEB-INF/order.jsp").forward(request,response);
+    }
+    // 待收货
+    private void daish(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ResponseCode allOrder=orderService.daifsh();
+        request.setAttribute("olist",allOrder);
+        request.getRequestDispatcher("/WEB-INF/huowu.jsp").forward(request,response);
+    }
+    // 待收货
+    private void daifk(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ResponseCode allOrder=orderService.daifk();
+        request.setAttribute("olist",allOrder);
+        request.getRequestDispatcher("/WEB-INF/order.jsp").forward(request,response);
+    }
 }

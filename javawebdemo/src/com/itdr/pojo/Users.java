@@ -6,9 +6,20 @@ public class Users {
     private Integer id;
     private String username;
     private String password;
-    private int type;
-    private Date create_time;
-    private Date update_time;
+    private String id_number;
+    private String iphone;
+    private String email;
+    private String sex;
+    private String address;
+    private Integer type;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -26,35 +37,51 @@ public class Users {
         this.password = password;
     }
 
-    public Integer getId() {
-        return id;
+    public String getId_number() {
+        return id_number;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId_number(String id_number) {
+        this.id_number = id_number;
     }
 
-    public int getType() {
+    public String getIphone() {
+        return iphone;
+    }
+
+    public void setIphone(String iphone) {
+        this.iphone = iphone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Integer getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(Integer type) {
         this.type = type;
-    }
-
-    public Date getCreate_time() {
-        return create_time;
-    }
-
-    public void setCreate_time(Date create_time) {
-        this.create_time = create_time;
-    }
-
-    public Date getUpdate_time() {
-        return update_time;
-    }
-
-    public void setUpdate_time(Date update_time) {
-        this.update_time = update_time;
     }
 }

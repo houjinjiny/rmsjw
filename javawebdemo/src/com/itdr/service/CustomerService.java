@@ -14,4 +14,8 @@ public interface CustomerService {
     ResponseCode upType(String i,String num);
 
     ResponseCode downType(String i, String num);
+
+    int getC1();
+
+    int getC2();
 }

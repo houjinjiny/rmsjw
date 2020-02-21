@@ -32,8 +32,12 @@ public class UserServlet extends HttpServlet {
             case "getmsg":
                 getMsg(request,response);
                 break;
+            case "changemesg":
+                changemesg(request,response);
+                break;
         }
     }
+
 
 
     //管理员登录
@@ -48,16 +52,23 @@ public class UserServlet extends HttpServlet {
             Users data=login.getData();
             session.setAttribute("us",data);
 //            request.setAttribute("user",login);
-            request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request,response);
+            OrderServlet orderServlet=new OrderServlet();
+            orderServlet.getNum(request,response);
         }else {
             request.getRequestDispatcher("/WEB-INF/noaccess.jsp").forward(request,response);
         }
 
     }
     //获取管理员信息
-    private void getMsg(HttpServletRequest request,HttpServletResponse response){
-        System.out.println("获取管理员信息");
+    private void getMsg(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/WEB-INF/myself.jsp").forward(request,response);
     }
-    //修改管理员信息
-    //禁用管理员
+    private void changemesg(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session=request.getSession();
+        Users u= (Users) session.getAttribute("us");
+        String passO = request.getParameter("passO");
+        String passN = request.getParameter("passN");
+        ResponseCode i=userService.changemesg(u.getUsername(),passO,passN);
+        response.getWriter().write(i.getData().toString());
+    }
 }

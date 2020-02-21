@@ -17,7 +17,7 @@
             display: flex;
             align-content: center;
             justify-content: center;
-            background: url(images/1.jpg) no-repeat;
+            background: url(static/images/1.jpg) no-repeat;
             background-size: 100% 100%;
         }
         .current{

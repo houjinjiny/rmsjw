@@ -1,0 +1,23 @@
+.dhl{
+    font-size: 18px;
+}
+#right{
+    width: 80%;
+    height: 100%;
+}
+table{
+    width: 400px;
+    height: 400px;
+    margin: 20px auto;
+}
+tr{
+    width: 30px;
+    height: 30px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+#nav{
+    margin-left: 740px;
+
+}

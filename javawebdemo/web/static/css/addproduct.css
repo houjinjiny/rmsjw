@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#nav{
+    margin-left: 740px;
+
+}
+.dhl{
+    font-size: 18px;
+}
+form{
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    font-size: 18px;
+}
+input{
+    height: 30px;
+    margin-top: 30px;
+}
+#btu{
+    width: 100px;
+    height: 40px;
+}

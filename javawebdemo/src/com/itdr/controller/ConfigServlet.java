@@ -23,11 +23,18 @@ public class ConfigServlet extends HttpServlet {
             case "addproduct":
                 addProduct(request,response);
                 break;
+            case "changemsg":
+                changemsg(request,response);
+                break;
         }
     }
 
+    private void changemsg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/WEB-INF/changge.jsp").forward(request,response);
+    }
 
-//返回首页
+
+    //返回首页
     private void home(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request,response);
     }
